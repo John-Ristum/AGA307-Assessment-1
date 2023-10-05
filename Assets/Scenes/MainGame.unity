@@ -5387,6 +5387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65232fc53bc602d40940407572e70519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseSensitivity: 1000
+  player: {fileID: 1117588151}
 --- !u!1 &979468829
 GameObject:
   m_ObjectHideFlags: 0
@@ -5821,6 +5823,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130759c0e9c4e504abcbd72a80ed42d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1117588148}
+  speed: 10
+  gravity: -9.81
+  jumpHeight: 3
+  groundCheck: {fileID: 150381389}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1139027144
 GameObject:
   m_ObjectHideFlags: 0
@@ -5834,7 +5845,7 @@ GameObject:
   - component: {fileID: 1139027147}
   - component: {fileID: 1139027146}
   - component: {fileID: 1139027145}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
