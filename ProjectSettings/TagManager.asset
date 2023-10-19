@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectile
   - Target
+  - TriggerZone2Object
   layers:
   - Default
   - TransparentFX
