@@ -5,11 +5,12 @@ using UnityEngine;
 public class FiringPoint : MonoBehaviour
 {
     [Header("Rigidbody Projectiles")]
-    public GameObject projectilePrefab;     //the projectile we wish to instantiate
+    public GameObject[] projectilePrefabs;     //the projectile we wish to instantiate
     public float projectileSpeed = 1000f;   //The speed that our projectile fires at
     [Header("Raycast Projectiles")]
     public GameObject hitSparks;
     public LineRenderer laser;
+    private int currentProjectile = 0;
 
 
     void Update()
@@ -18,6 +19,12 @@ public class FiringPoint : MonoBehaviour
             FireRigidbody();
         if (Input.GetButtonDown("Fire2"))
             FireRaycast();
+        if (Input.GetKeyDown("1"))
+            currentProjectile = 0;
+        if (Input.GetKeyDown("2"))
+            currentProjectile = 1;
+        if (Input.GetKeyDown("3"))
+            currentProjectile = 2;
     }
 
     void FireRigidbody()
@@ -25,7 +32,7 @@ public class FiringPoint : MonoBehaviour
         //Create a reference to hold our instantiated object
         GameObject projectileInstance;
         //Instantiate our projectile prefab at the firing point's position and rotation
-        projectileInstance = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        projectileInstance = Instantiate(projectilePrefabs[currentProjectile], transform.position, transform.rotation);
         //Get the rigidbody component of the projectile and add force to "fire" it
         projectileInstance.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
     }

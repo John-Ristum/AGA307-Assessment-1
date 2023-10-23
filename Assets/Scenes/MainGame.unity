@@ -4208,7 +4208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e52cbf6be5f66468314f2c2b45b762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2822517433721222746, guid: b2b94c2375b63594994dd7b0cd74eee4, type: 3}
+  projectilePrefabs:
+  - {fileID: 7360022799675476504, guid: edfd58fa7b85a114ab42740c267ae957, type: 3}
+  - {fileID: 6916063384135968078, guid: 1d1127397042cb7498319c14530336e7, type: 3}
+  - {fileID: 1406477982070703415, guid: 2af6824be16d6db4ba2418b471551013, type: 3}
   projectileSpeed: 1000
   hitSparks: {fileID: 8652319566727268765, guid: 5b66f1485b200924d9bb87052fd6c380, type: 3}
   laser: {fileID: 951927972}
