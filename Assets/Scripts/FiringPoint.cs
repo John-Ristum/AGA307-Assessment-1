@@ -8,6 +8,7 @@ public class FiringPoint : MonoBehaviour
     public GameObject[] projectilePrefabs;     //the projectile we wish to instantiate
     public float projectileSpeed = 1000f;   //The speed that our projectile fires at
     [Header("Raycast Projectiles")]
+    public GameObject raycastProjectile;
     public GameObject hitSparks;
     public LineRenderer laser;
     private int currentProjectile = 0;
@@ -31,7 +32,7 @@ public class FiringPoint : MonoBehaviour
     {
         //Create a reference to hold our instantiated object
         GameObject projectileInstance;
-        //Instantiate our projectile prefab at the firing point's position and rotation
+        //Instantiate the projectile prefab at the firing point's position and rotation
         projectileInstance = Instantiate(projectilePrefabs[currentProjectile], transform.position, transform.rotation);
         //Get the rigidbody component of the projectile and add force to "fire" it
         projectileInstance.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
@@ -39,6 +40,11 @@ public class FiringPoint : MonoBehaviour
 
     void FireRaycast()
     {
+        //Instantiate the raycastProjectile prefab at the firing point's position and rotation
+        GameObject projectileInstance = Instantiate(raycastProjectile, transform.position, transform.rotation);
+        //Get the rigidbody component of the raycastProjectile and add force to "fire" it
+        projectileInstance.GetComponent<Rigidbody>().AddForce(transform.forward * 10000f);
+
         //Create the ray
         Ray ray = new Ray(transform.position, transform.forward);
         //Create a reference to hold the info on what we hit
@@ -46,26 +52,10 @@ public class FiringPoint : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity)) //Mathf.Infinity makes ray go forever. out hit will output the results to the hit variable
         {
-            laser.SetPosition(0, transform.position);
-            laser.SetPosition(1, hit.point);
-            StopAllCoroutines();
-            StartCoroutine(StopLaser());
-
-            GameObject particles = Instantiate(hitSparks, hit.point, hit.transform.rotation);
-
-            Destroy(particles, 1);
-
             if (hit.collider.CompareTag("Target"))
             {
                 Destroy(hit.collider.gameObject);
             }
         }
-    }
-
-    IEnumerator StopLaser()
-    {
-        laser.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        laser.gameObject.SetActive(false);
     }
 }
