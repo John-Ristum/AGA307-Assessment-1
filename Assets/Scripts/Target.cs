@@ -17,7 +17,7 @@ public class Target : MonoBehaviour
 
     private void Awake()
     {
-        _TM = FindObjectOfType<TargetManager>();
+        _TM = TargetManager.INSTANCE;
         originalScale = transform.localScale;
         SetUp();
         StartCoroutine(MoveRandom3());
@@ -59,6 +59,9 @@ public class Target : MonoBehaviour
 
     void DestroyTarget()
     {
+        //remove this target from list in Target Manager
+        _TM.targets.Remove(this.gameObject);
+        //destroy this target
         Destroy(this.gameObject);
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TargetSize { Small, Medium, Large }
 
-public class TargetManager : MonoBehaviour
+public class TargetManager : Singleton<TargetManager>
 {
     public Transform[] spawnPoints;
     public GameObject[] targetTypes;
