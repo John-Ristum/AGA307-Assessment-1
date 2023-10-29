@@ -28754,7 +28754,6 @@ MonoBehaviour:
   - {fileID: 4105827451395917748, guid: 850a514c0f9ba674697c445c78f985b1, type: 3}
   - {fileID: 2915742659808067462, guid: cb5934541830c704ba64c220a0ac821e, type: 3}
   - {fileID: 5542542116276894153, guid: d5107bcebb4ad7545a02ba6b15bcf4cf, type: 3}
-  - {fileID: 6560987514176989980, guid: 49ae583e449d1464da6cfd0bb7c7b212, type: 3}
   targets: []
 --- !u!4 &1384427847
 Transform:
@@ -36810,7 +36809,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 0
+  difficulty: 0
   score: 0
+  timer: 30
 --- !u!4 &1618619681
 Transform:
   m_ObjectHideFlags: 0

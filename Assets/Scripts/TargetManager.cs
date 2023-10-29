@@ -15,7 +15,7 @@ public class TargetManager : Singleton<TargetManager>
         if (Input.GetKeyDown(KeyCode.I))
             SpawnAtRandom();
         if (Input.GetKeyDown(KeyCode.R))
-            ResizeTargets();
+            ResizeTargetsRandom();
     }
 
     /// <summary>
@@ -38,6 +38,16 @@ public class TargetManager : Singleton<TargetManager>
         print("Number of targets: " + targets.Count);
     }
 
+    public void DestroyTarget(GameObject _target)
+    {
+        //destroy selected target
+        Destroy(_target);
+        //remove selected target from list
+        targets.Remove(_target);
+
+        ShowTargetCount();
+    }
+
     /// <summary>
     /// Get a random spawn point
     /// </summary>
@@ -50,7 +60,7 @@ public class TargetManager : Singleton<TargetManager>
     /// <summary>
     /// Resizes target to a random size
     /// </summary>
-    void ResizeTargets()
+    void ResizeTargetsRandom()
     {
         for (int i = 0; i <= targets.Count - 1; i++)
         {
@@ -59,5 +69,29 @@ public class TargetManager : Singleton<TargetManager>
             //reconfiures target according to it's new size
             targets[i].GetComponent<Target>().SetUp();
         }
+    }
+
+    /// <summary>
+    /// Resizes target according to game difficulty
+    /// </summary>
+    public void ResizeTargetsDifficulty(int _size)
+    {
+        for (int i = 0; i <= targets.Count - 1; i++)
+        {
+            //changes TargetSize enum to a random state
+            targets[i].GetComponent<Target>().targetSize = (TargetSize)_size;
+            //reconfiures target according to it's new size
+            targets[i].GetComponent<Target>().SetUp();
+        }
+    }
+
+    private void OnEnable()
+    {
+        Target.OnTargetDestroy += DestroyTarget;
+    }
+
+    private void OnDisable()
+    {
+        Target.OnTargetDestroy -= DestroyTarget;
     }
 }

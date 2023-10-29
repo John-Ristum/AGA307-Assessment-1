@@ -20,12 +20,8 @@ public class FiringPoint : MonoBehaviour
             FireRigidbody();
         if (Input.GetButtonDown("Fire2"))
             FireRaycast();
-        if (Input.GetKeyDown("1"))
-            currentProjectile = 0;
-        if (Input.GetKeyDown("2"))
-            currentProjectile = 1;
-        if (Input.GetKeyDown("3"))
-            currentProjectile = 2;
+        if (Input.GetKeyDown("q"))
+            CycleWeapons();
     }
 
     void FireRigidbody()
@@ -57,5 +53,12 @@ public class FiringPoint : MonoBehaviour
                 Destroy(hit.collider.gameObject);
             }
         }
+    }
+
+    void CycleWeapons()
+    {
+        currentProjectile++;
+        if (currentProjectile > 2)
+            currentProjectile = 0;
     }
 }
