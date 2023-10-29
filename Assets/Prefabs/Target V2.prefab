@@ -112,3 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSize: 1
   health: 2
+  baseSpeed: 5
+  moveDistance: 1000
+  moveToPos: {fileID: 0}

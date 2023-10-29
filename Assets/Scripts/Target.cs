@@ -7,31 +7,44 @@ public class Target : MonoBehaviour
     public TargetSize targetSize;
     public int health = 2;
     float scaleFactor;      //Needed for target size
-    public float mySpeed = 1f;
+    public float baseSpeed = 5f;
+    float mySpeed;
     public float moveDistance = 1000f;
+    public Transform moveToPos;
+    Vector3 originalScale;
+
+    TargetManager _TM;
 
     private void Awake()
     {
+        _TM = FindObjectOfType<TargetManager>();
+        originalScale = transform.localScale;
         SetUp();
-        StartCoroutine(Move());
+        StartCoroutine(MoveRandom3());
     }
 
-    void SetUp()
+    public void SetUp()
     {
         switch (targetSize)
         {
             case TargetSize.Small:
                 scaleFactor = 0.5f;
+                mySpeed = baseSpeed * 2f;
+                this.gameObject.GetComponent<Renderer>().material.color = Color.red;
                 break;
             case TargetSize.Medium:
                 scaleFactor = 1f;
+                mySpeed = baseSpeed;
+                this.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
                 break;
             case TargetSize.Large:
                 scaleFactor = 2f;
+                mySpeed = baseSpeed / 2;
+                this.gameObject.GetComponent<Renderer>().material.color = Color.green;
                 break;
         }
 
-        transform.localScale = transform.localScale * scaleFactor;
+        transform.localScale = originalScale * scaleFactor;
     }
 
     public int CauseDamage(int damage)
@@ -49,15 +62,33 @@ public class Target : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    /// <summary>
+    /// Moves target to a random position
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Move()
     {
-        for (int i = 0; i < moveDistance; i++)
+        moveToPos = _TM.GetRandomSpawnPoint();
+        transform.LookAt(moveToPos);
+        while(Vector3.Distance(transform.position, moveToPos.position) > 0.3f)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * mySpeed);
+            transform.position = Vector3.MoveTowards(transform.position, moveToPos.position, Time.deltaTime * mySpeed);
             yield return null;
         }
-        transform.Rotate(Vector3.up * 180);
-        yield return new WaitForSeconds(Random.Range(1, 3));
+    }
+
+    /// <summary>
+    /// Moves target to random new position every 3 seconds
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator MoveRandom3()
+    {
         StartCoroutine(Move());
+
+        yield return new WaitForSeconds(3f);
+
+        StopAllCoroutines();
+
+        StartCoroutine(MoveRandom3());
     }
 }
