@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MouseLook : MonoBehaviour
+public class MouseLook : GameBehaviour
 {
     public float mouseSensitivity = 100f;
     public Transform player;
@@ -22,5 +22,14 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         player.Rotate(Vector3.up * mouseX);
+
+        if (_GM.gameState != GameState.Playing)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }

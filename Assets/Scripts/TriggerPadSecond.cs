@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerPadSecond : MonoBehaviour
+public class TriggerPadSecond : GameBehaviour
 {
     public GameObject sphere;   //The object we wish to change
     public Color sphereDefaultColour;   //The original colour of the sphere

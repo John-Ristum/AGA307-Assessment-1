@@ -2,54 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState { Title, Playing, Paused, GameOver }
 public enum Difficulty { Easy, Medium, Hard }
 
 public class GameManager : Singleton<GameManager>
 {
+    public GameState gameState;
     public Difficulty difficulty;
     public int score = 0;
     int scoreMultiplier = 1;
     public float timer = 30f;
+    public float startTime = 30f;
+    public bool isTiming;
 
     private void Update()
     {
+        Timer();
+    }
+
+    private void Timer()
+    {
+        if (!isTiming)
+            return;
+
         if (timer > 0)
         {
             timer -= Time.deltaTime;
+            _UI.UpdateTime(timer, startTime);
         }
-
-        if (Input.GetKeyDown("1"))
+        else
         {
-            difficulty = Difficulty.Easy;
-            SetDifficulty();
-        }
-        if (Input.GetKeyDown("2"))
-        {
-            difficulty = Difficulty.Medium;
-            SetDifficulty();
-        }
-        if (Input.GetKeyDown("3"))
-        {
-            difficulty = Difficulty.Hard;
-            SetDifficulty();
+            ChangeGameState(GameState.GameOver);
+            _UI.GameOver(score);
         }
     }
 
-    void SetDifficulty()
+    public void SetDifficulty(int _difficulty)
     {
-        switch (difficulty)
+        switch (_difficulty)
         {
-            case Difficulty.Easy:
+            case 0:
+                difficulty = Difficulty.Easy;
                 scoreMultiplier = 1;
-                TargetManager.INSTANCE.ResizeTargetsDifficulty(2);
                 break;
-            case Difficulty.Medium:
+            case 1:
+                difficulty = Difficulty.Medium;
                 scoreMultiplier = 2;
-                TargetManager.INSTANCE.ResizeTargetsDifficulty(1);
                 break;
-            case Difficulty.Hard:
+            case 2:
+                difficulty = Difficulty.Hard;
                 scoreMultiplier = 3;
-                TargetManager.INSTANCE.ResizeTargetsDifficulty(0);
                 break;
         }
     }
@@ -58,6 +60,9 @@ public class GameManager : Singleton<GameManager>
     {
         timer += 5f;
         score += 100 * scoreMultiplier;
+
+        _UI.UpdateTime(timer, startTime);
+        _UI.UpdateScore(score);
     }
 
     private void OnEnable()
@@ -68,5 +73,10 @@ public class GameManager : Singleton<GameManager>
     private void OnDisable()
     {
         Target.OnTargetHit -= OnTargetHit;
+    }
+
+    public void ChangeGameState(GameState _gameState)
+    {
+        gameState = _gameState;
     }
 }

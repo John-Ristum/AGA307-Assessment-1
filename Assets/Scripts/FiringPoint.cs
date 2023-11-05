@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FiringPoint : MonoBehaviour
+public class FiringPoint : GameBehaviour
 {
     [Header("Rigidbody Projectiles")]
     public GameObject[] projectilePrefabs;     //the projectile we wish to instantiate
@@ -13,13 +13,27 @@ public class FiringPoint : MonoBehaviour
     public LineRenderer laser;
     private int currentProjectile = 0;
 
+    private void Start()
+    {
+        _UI.UpdateWeapon(projectilePrefabs[currentProjectile]);
+    }
 
     void Update()
     {
+        if (_GM.gameState != GameState.Playing)
+            return;
+
         if (Input.GetButtonDown("Fire1"))
             FireRigidbody();
         if (Input.GetButtonDown("Fire2"))
             FireRaycast();
+
+        if (Input.GetKeyDown("1"))
+            currentProjectile = 0;
+        if (Input.GetKeyDown("2"))
+            currentProjectile = 1;
+        if (Input.GetKeyDown("3"))
+            currentProjectile = 2;
         if (Input.GetKeyDown("q"))
             CycleWeapons();
     }
@@ -60,5 +74,6 @@ public class FiringPoint : MonoBehaviour
         currentProjectile++;
         if (currentProjectile > 2)
             currentProjectile = 0;
+        _UI.UpdateWeapon(projectilePrefabs[currentProjectile]);
     }
 }

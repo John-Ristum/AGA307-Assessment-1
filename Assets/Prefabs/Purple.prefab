@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7360022799675476504
+--- !u!1 &1406477982070703415
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7504370132898481891}
-  - component: {fileID: 322186549526632040}
-  - component: {fileID: 8979406993918198392}
-  - component: {fileID: 5154764790139513612}
-  - component: {fileID: -1541774358506964406}
-  - component: {fileID: -9096435733902455754}
+  - component: {fileID: 5850713049929811649}
+  - component: {fileID: 755759786601693632}
+  - component: {fileID: 5854931819526232223}
+  - component: {fileID: 8868516833848977137}
+  - component: {fileID: 4947483679571540083}
+  - component: {fileID: -2158604955391958494}
   m_Layer: 0
-  m_Name: Projectile 0
+  m_Name: Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7504370132898481891
+--- !u!4 &5850713049929811649
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7360022799675476504}
+  m_GameObject: {fileID: 1406477982070703415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,21 +36,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &322186549526632040
+--- !u!33 &755759786601693632
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7360022799675476504}
+  m_GameObject: {fileID: 1406477982070703415}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8979406993918198392
+--- !u!23 &5854931819526232223
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7360022799675476504}
+  m_GameObject: {fileID: 1406477982070703415}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4fdf32fcb284fd4cb9244267eeac621, type: 2}
+  - {fileID: 2100000, guid: 293cc3a5d40693041a33621639d85fc2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,26 +86,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5154764790139513612
+--- !u!135 &8868516833848977137
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7360022799675476504}
+  m_GameObject: {fileID: 1406477982070703415}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-1541774358506964406
+--- !u!54 &4947483679571540083
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7360022799675476504}
+  m_GameObject: {fileID: 1406477982070703415}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -115,17 +115,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-9096435733902455754
+--- !u!114 &-2158604955391958494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7360022799675476504}
+  m_GameObject: {fileID: 1406477982070703415}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1322f74ac80f764a83d9c00640ea4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeSpan: 5
-  damage: 1
+  lifeSpan: 0.3
+  damage: 2

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : MonoBehaviour
+public class Target : GameBehaviour
 {
     public static event Action<GameObject> OnTargetHit = null;
     public static event Action<GameObject> OnTargetDestroy = null;
@@ -17,11 +17,9 @@ public class Target : MonoBehaviour
     public Transform moveToPos;
     Vector3 originalScale;
 
-    TargetManager _TM;
 
     private void Awake()
     {
-        _TM = TargetManager.INSTANCE;
         originalScale = transform.localScale;
         SetUp();
         StartCoroutine(MoveRandom3());
